@@ -1,5 +1,5 @@
 {
-  "name": "exercism-test",
+  "name": "AdventofCode2022",
   "version": "1.0.0",
   "private": true,
   "description": "test",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Daniel-luis/ABAPonExercism.git"
+    "url": "git+https://github.com/Daniel-luis/AdventOfCode2022.git"
   },
   "dependencies": {
     "@abaplint/transpiler-cli": "^2.3.48",
