@@ -1,0 +1,25 @@
+{
+  "name": "exercism-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "downport": "rm -rf downport && cp -r src downport && abaplint --fix abaplint-downport.json",
+    "unit": "node output/index.mjs",
+    "transpile": "rm -rf output && abap_transpile abap_transpile.json",
+    "test": "npm run downport && npm run transpile && npm run unit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daniel-luis/ABAPonExercism.git"
+  },
+  "dependencies": {
+    "@abaplint/transpiler-cli": "^2.3.48",
+    "@abaplint/transpiler": "^2.3.48",
+    "@abaplint/cli": "^2.93.86",
+    "@abaplint/runtime": "^2.3.48"
+  },
+  "author": "",
+  "license": "ISC"
+}
