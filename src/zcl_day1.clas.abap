@@ -48,17 +48,17 @@ CLASS zcl_day1 IMPLEMENTATION.
     DATA(lv_most_calories) = get_most_calories( lt_calories ).
     DATA(lv_top_three) = get_top_three( lt_calories ).
 
-    out->write( |Most Calories is: { lv_most_calories } | ) .
+    out->write( |Most Calories is: { lv_most_calories } | ).
     out->write( |Total calories by the top three:  { lv_top_three } | ).
 
   ENDMETHOD.
 
   METHOD get_input_data.
 
-    CONSTANTS: lc_url TYPE string VALUE 'https://raw.githubusercontent.com/Daniel-luis/AdventOfCode2022/main/input_files/day1.txt'.
+    CONSTANTS lc_url TYPE string VALUE 'https://raw.githubusercontent.com/Daniel-luis/AdventOfCode2022/main/input_files/day1.txt'.
     DATA(lo_client) = create_client( lc_url ).
-    DATA(ls_response) = lo_client->execute( if_web_http_client=>get )->get_text(  ).
-    lo_client->close(  ).
+    DATA(ls_response) = lo_client->execute( if_web_http_client=>get )->get_text( ).
+    lo_client->close( ).
 
     SPLIT ls_response AT cl_abap_char_utilities=>newline INTO TABLE rt_input.
 
@@ -74,13 +74,12 @@ CLASS zcl_day1 IMPLEMENTATION.
 
   METHOD get_calories_per_elf.
 
-    DATA: lv_tot_calories TYPE i,
-          lv_elf_id       TYPE i.
 
-    lv_elf_id = 1.
+
+    DATA(lv_elf_id) = 1.
     LOOP AT it_input INTO DATA(ls_string_tab).
       IF ls_string_tab <> space.
-        lv_tot_calories += CONV i( ls_string_tab ).
+        DATA(lv_tot_calories) += CONV i( ls_string_tab ).
       ELSE.
         APPEND VALUE ty_s_elfs_calories(
             elf_id = lv_elf_id
