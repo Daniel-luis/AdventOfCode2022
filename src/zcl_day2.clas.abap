@@ -65,7 +65,7 @@ CLASS zcl_day2 IMPLEMENTATION.
     CONSTANTS: lc_url TYPE string VALUE 'https://raw.githubusercontent.com/Daniel-luis/AdventOfCode2022/main/input_files/day2.txt'.
     DATA(lo_client) = create_client( lc_url ).
     DATA(ls_response) = lo_client->execute( if_web_http_client=>get )->get_text(  ).
-    lo_client->close(  ).
+    lo_client->close( ).
 
     SPLIT ls_response AT cl_abap_char_utilities=>newline INTO TABLE rt_input.
 
@@ -131,12 +131,12 @@ CLASS zcl_day2 IMPLEMENTATION.
     LOOP AT ct_results ASSIGNING FIELD-SYMBOL(<ls_results>).
 
       CASE <ls_results>-my_choice.
-          "Draw
-        WHEN 'R'.
-          <ls_results>-my_choice = <ls_results>-opponent_choice.
-          <ls_results>-round_outcome = 3.
           "Loose
         WHEN 'P'.
+          <ls_results>-my_choice = <ls_results>-opponent_choice.
+          <ls_results>-round_outcome = 3.
+          "Draw
+        WHEN 'R'.
           <ls_results>-my_choice = COND #( WHEN <ls_results>-opponent_choice = 'R' THEN 'S'
                                            WHEN <ls_results>-opponent_choice = 'P' THEN 'R'
                                            WHEN <ls_results>-opponent_choice = 'S' THEN 'P' ).
